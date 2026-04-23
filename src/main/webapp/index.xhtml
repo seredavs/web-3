@@ -91,7 +91,6 @@
 <h:body>
     <div class="container">
         <div class="header">
-            <h1>🌐 WEB-программирование</h1>
             <h2>Лабораторная работа №3</h2>
         </div>
 
@@ -101,54 +100,31 @@
         </div>
 
         <!-- Часы -->
-        <!-- Часы -->
         <div class="clock-section">
-            <h2 style="color: #6A0DAD;">🕒 Текущее время</h2>
 
             <div class="digital-clock" style="font-size: 1.8em; font-family: 'Courier New'; padding: 15px;">
-                <p:outputPanel id="clockPanel">
-                    📅 Дата: <strong>#{clockBean.currentDate}</strong><br/>
-                    🕐 Время: <strong>#{clockBean.currentTime}</strong>
-                </p:outputPanel>
-            </div>
+                <h:panelGroup id="clockPanel">
+                    Дата: <strong>#{clockBean.currentDate}</strong><br/>
+                    Время: <strong>#{clockBean.currentTime}</strong>
+                </h:panelGroup>
 
-            <!-- Аналоговые часы -->
-            <canvas id="analogClock" width="180" height="180"
-                    style="display: block; margin: 15px auto; background: white;
-                   border-radius: 50%; border: 3px solid #6A0DAD;"></canvas>
+                <meta http-equiv="refresh" content="12" />
+            </div>
 
             <!-- Обновление каждые 12 секунд -->
             <p:poll interval="12" update="clockPanel" />
 
             <p style="color: #666; font-size: 0.9em;">
-                <small>⏱️ Часы обновляются каждые 12 секунд</small>
+                <small>Часы обновляются каждые 12 секунд</small>
             </p>
         </div>
 
-        <div class="info-box">
-            <h3>🎯 Область проверки</h3>
-            <p>Область формируется из трех частей:<br/>
-                1. Четверть круга (левый верхний квадрант)<br/>
-                2. Треугольник (правый верхний квадрант)<br/>
-                3. Прямоугольник (левый нижний квадрант)</p>
-        </div>
-
-        <div class="info-box">
-            <h3>⚙️ Технологии</h3>
-            <p>Java EE 8, JSF 2.2, PrimeFaces 8.0, PostgreSQL, WildFly 26</p>
-        </div>
-
         <h:form>
-            <p:commandButton value="🚀 Перейти к проверке точек"
-                             action="main.xhtml"
-                             styleClass="nav-button"
-                             ajax="false" />
+            <h:commandButton value="🚀 Перейти к проверке точек"
+                             action="main"
+                             styleClass="nav-button" />
         </h:form>
 
-        <div style="text-align: center; margin-top: 40px; color: #666; font-size: 0.9em;">
-            <p>© 2025 Лабораторная работа по WEB-программированию</p>
-            <p>Университет ИТМО | Факультет ПИиКТ</p>
-        </div>
     </div>
     <!-- Скрипт для аналоговых часов -->
     <script>

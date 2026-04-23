@@ -2,8 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Проверка попадания точки</title>
     <meta charset="UTF-8" />
@@ -16,28 +15,28 @@
             min-height: 100vh;
         }
         .container {
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 0 auto;
             background: white;
-            padding: 25px;
+            padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             border-bottom: 3px solid #6A0DAD;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
         }
         .header h1 {
-            color: #6A0DAD;
+            color: #6A0AD;
             margin: 0 0 10px 0;
         }
         .student-info {
             background: #6A0DAD;
             color: white;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 15px;
+            border-radius: 10px;
             display: inline-block;
             margin: 10px 0;
         }
@@ -52,87 +51,81 @@
             text-decoration: underline;
         }
         .content-wrapper {
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 25px;
+            display: flex;
+            gap: 30px;
             margin-top: 20px;
         }
-        @media (max-width: 1000px) {
-            .content-wrapper {
-                grid-template-columns: 1fr;
-            }
-        }
         .form-section {
+            flex: 1;
             background: #f8f9fa;
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
             border: 2px solid #e9ecef;
         }
-        .form-section h2 {
+        .graph-section {
+            flex: 2;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            text-align: center;
+        }
+        .form-section h2, .graph-section h2 {
             color: #6A0DAD;
             margin-top: 0;
             border-bottom: 2px solid #6A0DAD;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
         .form-label {
             display: block;
             color: #333;
             font-weight: bold;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
-        .ui-selectonemenu, .ui-inputfield {
-            width: 100% !important;
-            padding: 8px !important;
-            border: 2px solid #ddd !important;
-            border-radius: 6px !important;
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
         }
-        .ui-selectoneradio label {
-            display: inline-block !important;
-            padding: 8px 12px !important;
-            margin: 4px !important;
-            background: #e0e0e0 !important;
-            border-radius: 6px !important;
-            cursor: pointer !important;
-        }
-        .ui-selectoneradio .ui-state-active label {
-            background: #6A0DAD !important;
-            color: white !important;
+        .form-control:focus {
+            outline: none;
+            border-color: #6A0DAD;
+            box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.1);
         }
         .button-group {
             display: flex;
-            gap: 12px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-top: 25px;
         }
-        .ui-button {
+        .btn {
             flex: 1;
-            padding: 10px !important;
-            font-weight: bold !important;
-            border-radius: 8px !important;
-            border: none !important;
-            cursor: pointer !important;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
         }
-        .ui-button-primary {
-            background: #6A0DAD !important;
-            color: white !important;
+        .btn-primary {
+            background: #6A0DAD;
+            color: white;
         }
-        .ui-button-danger {
-            background: #f44336 !important;
-            color: white !important;
+        .btn-primary:hover {
+            background: #5a0c9d;
         }
-        .graph-section {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            border: 2px solid #e9ecef;
-            margin-bottom: 25px;
-            text-align: center;
+        .btn-danger {
+            background: #f44336;
+            color: white;
         }
-        .graph-section h2 {
-            color: #6A0DAD;
-            margin-top: 0;
+        .btn-danger:hover {
+            background: #d32f2f;
         }
         #graphCanvas {
             border: 3px solid #6A0DAD;
@@ -141,63 +134,56 @@
             cursor: crosshair;
         }
         .table-section {
+            margin-top: 30px;
             background: #f8f9fa;
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
             border: 2px solid #e9ecef;
         }
         .table-section h2 {
             color: #6A0DAD;
             margin-top: 0;
+            border-bottom: 2px solid #6A0DAD;
+            padding-bottom: 15px;
         }
-        .ui-datatable {
-            border: 2px solid #ddd !important;
-            border-radius: 8px !important;
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
         }
-        .ui-datatable thead th {
-            background: #6A0DAD !important;
-            color: white !important;
-            text-align: center !important;
-        }
-        .hit {
-            color: #4CAF50 !important;
-            font-weight: bold !important;
-        }
-        .miss {
-            color: #f44336 !important;
-            font-weight: bold !important;
-        }
-        .graph-notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
+        .data-table th {
             background: #6A0DAD;
             color: white;
             padding: 15px;
-            border-radius: 8px;
-            z-index: 10000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            animation: slideIn 0.3s ease;
-            max-width: 300px;
+            text-align: center;
+            font-weight: bold;
         }
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        .data-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
         }
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
+        .data-table tr:nth-child(even) {
+            background: #f9f9f9;
         }
-        .instructions {
-            background: #e3f2fd;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            border-left: 4px solid #2196f3;
+        .data-table tr:hover {
+            background: #f0f0f0;
         }
-        .instructions h3 {
-            color: #1565c0;
-            margin-top: 0;
+        .hit {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .miss {
+            color: #f44336;
+            font-weight: bold;
+        }
+        .error-message {
+            color: #f44336;
+            font-size: 14px;
+            margin-top: 5px;
+            display: block;
         }
     </style>
 </h:head>
@@ -206,7 +192,7 @@
     <div class="container">
         <!-- Шапка -->
         <div class="header">
-            <h1>🎯 Проверка попадания точки в область</h1>
+            <h1>Проверка попадания точки в область</h1>
             <div class="student-info">
                 <strong>Середа Вероника Сергеевна</strong> |
                 Группа: P3212 | Вариант: 470354 | ИСУ: 467432
@@ -214,26 +200,16 @@
             <h:link outcome="index.xhtml" value="← Вернуться на стартовую страницу" styleClass="nav-back" />
         </div>
 
-        <!-- Инструкция -->
-        <div class="instructions">
-            <h3>📋 Как пользоваться:</h3>
-            <p>1. Выберите X из списка (-2.0, -1.5, ..., 1.5)</p>
-            <p>2. Введите Y (целое число от -3 до 3)</p>
-            <p>3. Выберите R (от 1 до 5)</p>
-            <p>4. Нажмите "Проверить" ИЛИ кликните на графике</p>
-        </div>
-
         <div class="content-wrapper">
             <!-- Левая часть: Форма -->
             <div class="form-section">
-                <h2>📝 Ввод координат</h2>
+                <h2>Ввод координат</h2>
 
                 <h:form id="pointForm">
                     <!-- X координата -->
                     <div class="form-group">
                         <h:outputLabel for="x" value="Координата X:" styleClass="form-label" />
-                        <p:selectOneMenu id="x" value="#{attempt.x}" required="true"
-                                         requiredMessage="Выберите X">
+                        <h:selectOneMenu id="x" value="#{attempt.x}" styleClass="form-control">
                             <f:selectItem itemLabel="Выберите X" itemValue="" />
                             <f:selectItem itemValue="-2.0" itemLabel="-2.0" />
                             <f:selectItem itemValue="-1.5" itemLabel="-1.5" />
@@ -243,425 +219,269 @@
                             <f:selectItem itemValue="0.5" itemLabel="0.5" />
                             <f:selectItem itemValue="1.0" itemLabel="1.0" />
                             <f:selectItem itemValue="1.5" itemLabel="1.5" />
-                        </p:selectOneMenu>
-                        <p:message for="x" style="color: #f44336; font-size: 0.9em;" />
+                        </h:selectOneMenu>
                     </div>
 
                     <!-- Y координата -->
                     <div class="form-group">
                         <h:outputLabel for="y" value="Координата Y (-3 до 3):" styleClass="form-label" />
-                        <p:inputText id="y" value="#{attempt.y}" required="true"
-                                     requiredMessage="Введите Y">
-                            <f:validateLongRange minimum="-3" maximum="3" />
-                        </p:inputText>
-                        <p:message for="y" style="color: #f44336; font-size: 0.9em;" />
+                        <h:inputText id="y" value="#{attempt.y}" styleClass="form-control" />
                     </div>
 
                     <!-- R радиус -->
                     <div class="form-group">
                         <h:outputLabel for="r" value="Радиус R:" styleClass="form-label" />
-                        <p:selectOneRadio id="r" value="#{attempt.r}" required="true"
-                                          requiredMessage="Выберите R">
-                            <f:selectItem itemValue="1" itemLabel="1" />
-                            <f:selectItem itemValue="2" itemLabel="2" />
-                            <f:selectItem itemValue="3" itemLabel="3" />
-                            <f:selectItem itemValue="4" itemLabel="4" />
-                            <f:selectItem itemValue="5" itemLabel="5" />
-                        </p:selectOneRadio>
-                        <p:message for="r" style="color: #f44336; font-size: 0.9em;" />
+                        <div style="display: flex; gap: 10px; margin-top: 10px;">
+                            <h:selectOneRadio id="r" value="#{attempt.r}" layout="pageDirection">
+                                <f:selectItem itemValue="1" itemLabel="1" />
+                                <f:selectItem itemValue="2" itemLabel="2" />
+                                <f:selectItem itemValue="3" itemLabel="3" />
+                                <f:selectItem itemValue="4" itemLabel="4" />
+                                <f:selectItem itemValue="5" itemLabel="5" />
+                            </h:selectOneRadio>
+                        </div>
                     </div>
 
                     <!-- Кнопки -->
                     <div class="button-group">
-                        <p:commandButton value="✅ Проверить"
-                                         action="#{attemptRepository.addAttemptFromBean()}"
-                                         update="resultsTable messages"
-                                         styleClass="ui-button ui-button-primary" />
+                        <h:commandButton value="✅ Проверить"
+                                         action="#{attempt.addFormPoint()}"
+                                         styleClass="btn btn-primary" />
 
-                        <p:commandButton value="🗑️ Очистить"
-                                         action="#{attemptRepository.clearAttempts()}"
-                                         update="resultsTable"
-                                         styleClass="ui-button ui-button-danger"
-                                         onclick="return confirm('Очистить историю?')" />
+                        <h:commandButton value="🗑️ Очистить"
+                                         action="#{attempt.clear()}"
+                                         styleClass="btn btn-danger"
+                                         onclick="return confirm('Очистить историю проверок?')" />
                     </div>
 
-                    <!-- Скрытая форма для графика -->
-                    <h:form id="graphForm" style="display: none;">
-                        <h:inputHidden id="graphX" value="#{attemptRepository.graphX}" />
-                        <h:inputHidden id="graphY" value="#{attemptRepository.graphY}" />
-                        <h:inputHidden id="graphR" value="#{attemptRepository.graphR}" />
-                        <p:commandButton id="graphSubmitBtn"
-                                         action="#{attemptRepository.addAttemptFromGraph()}"
-                                         update="resultsTable"
-                                         style="display: none;" />
-                    </h:form>
+                    <div style="display: none">
+                        <h:inputHidden id="graphX" value="#{attempt.graphX}" />
+                        <h:inputHidden id="graphY" value="#{attempt.graphY}" />
+                        <h:commandButton id="sendCanvasData" value="Click"
+                                         action="#{attempt.addGraphPoint}">
+                            <f:ajax execute="graphX graphY" render="attemptTable" />
+                        </h:commandButton>
 
-                    <!-- Сообщения -->
-                    <p:messages id="messages" showDetail="true" />
+                    </div>
+
                 </h:form>
             </div>
 
-            <!-- Правая часть: График и таблица -->
-            <div>
-                <!-- График -->
-                <div class="graph-section">
-                    <h2>📈 График области (R = <span id="currentRValue">#{empty attempt.r ? '2' : attempt.r}</span>)</h2>
-                    <canvas id="graphCanvas" width="450" height="450"></canvas>
-                    <p style="color: #666; margin-top: 10px;">💡 Кликните на графике, чтобы добавить точку</p>
-                </div>
-
-                <!-- Таблица результатов -->
-                <div class="table-section">
-                    <h2>📊 История проверок</h2>
-                    <p:dataTable id="resultsTable"
-                                 value="#{attemptRepository.latestAttemptsList}"
-                                 var="attemptItem"
-                                 emptyMessage="Пока нет проверок. Добавьте первую точку!"
-                                 rows="8"
-                                 paginator="true">
-
-                        <p:column headerText="X">
-                            <h:outputText value="#{attemptItem.x}" />
-                        </p:column>
-
-                        <p:column headerText="Y">
-                            <h:outputText value="#{attemptItem.y}" />
-                        </p:column>
-
-                        <p:column headerText="R">
-                            <h:outputText value="#{attemptItem.r}" />
-                        </p:column>
-
-                        <p:column headerText="Результат">
-                            <h:outputText value="#{attemptItem.result ? '🎯 Попадание' : '❌ Промах'}"
-                                          styleClass="#{attemptItem.result ? 'hit' : 'miss'}" />
-                        </p:column>
-
-                        <p:column headerText="Время">
-                            <h:outputText value="#{attemptItem.createdAt}">
-                                <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-
-                    </p:dataTable>
-                </div>
+            <!-- Правая часть: График -->
+            <div class="graph-section">
+                <h2>График области</h2>
+                <canvas id="graphCanvas" width="500" height="500"></canvas>
+                <p style="color: #666; margin-top: 15px;">💡 Кликните на графике для добавления точки</p>
             </div>
         </div>
+
+        <!-- Таблица результатов -->
+        <h:panelGroup styleClass="table-section" id="attemptTable" layout="block">
+            <h2>История проверок</h2>
+
+
+            <h:dataTable value="#{attempt.attemptList}"
+                         var="attemptItem"
+                         styleClass="data-table"
+                         headerClass="table-header"
+                         rowClasses="table-row-odd, table-row-even">
+
+                <h:column>
+                    <f:facet name="header">X</f:facet>
+                    #{attemptItem.x}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Y</f:facet>
+                    #{attemptItem.y}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">R</f:facet>
+                    #{attemptItem.r}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Результат</f:facet>
+                    <span style="color: #{attemptItem.result ? '#4CAF50' : '#f44336'}; font-weight: bold;">
+                        #{attemptItem.result ? '🎯 Попадание' : '❌ Промах'}
+                    </span>
+                </h:column>
+
+            </h:dataTable>
+
+            <h:outputText value="Пока нет проверок. Добавьте первую точку!"
+                          rendered="#{empty attempt.attemptList}"
+                          style="display: block; text-align: center; padding: 30px; color: #666; font-size: 18px;" />
+        </h:panelGroup>
     </div>
 
-    <!-- Полный рабочий график -->
+
+
+    <!-- ПРОСТОЙ и РАБОЧИЙ JavaScript для графика -->
     <script>
-        console.log('=== ГРАФИК ЗАГРУЖАЕТСЯ ===');
+        // Ждём полной загрузки страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== ЗАГРУЗКА ГРАФИКА ===');
 
-        // Глобальные переменные
-        let currentR = 2;
-        let canvas, ctx;
-
-        // Функция получения текущего R из формы
-        function getCurrentRFromForm() {
-            const rDisplay = document.getElementById('currentRValue');
-            if (rDisplay) {
-                return parseFloat(rDisplay.textContent) || 2;
-            }
-
-            // Ищем выбранный radio
-            const checkedRadio = document.querySelector('input[name*=":r"]:checked');
-            if (checkedRadio) {
-                return parseFloat(checkedRadio.value);
-            }
-
-            return 2;
-        }
-
-        // Функция рисования области
-        function drawArea(r) {
-            if (!canvas || !ctx) return;
-
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            const scale = 40; // пикселей на единицу
-
-            // 1. Четверть круга (левый верхний квадрант)
-            ctx.fillStyle = 'rgba(106, 13, 173, 0.3)'; // полупрозрачный фиолетовый
-            ctx.strokeStyle = '#6A0DAD';
-            ctx.lineWidth = 2;
-
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, (r/2) * scale, Math.PI, Math.PI * 1.5, false);
-            ctx.lineTo(centerX, centerY);
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-
-            // 2. Треугольник (правый верхний квадрант)
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY);
-            ctx.lineTo(centerX + (r/2) * scale, centerY);
-            ctx.lineTo(centerX, centerY - r * scale);
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-
-            // 3. Прямоугольник (левый нижний квадрант)
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY);
-            ctx.lineTo(centerX - r * scale, centerY);
-            ctx.lineTo(centerX - r * scale, centerY + (r/2) * scale);
-            ctx.lineTo(centerX, centerY + (r/2) * scale);
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-        }
-
-        // Функция рисования сетки и осей
-        function drawGridAndAxes() {
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            const scale = 40;
-
-            // Сетка (светло-серая)
-            ctx.strokeStyle = '#f0f0f0';
-            ctx.lineWidth = 1;
-
-            // Вертикальные линии
-            for (let i = -5; i &amp;lt;= 5; i++) {
-                const x = centerX + i * scale;
-                ctx.beginPath();
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x, canvas.height);
-                ctx.stroke();
-            }
-
-            // Горизонтальные линии
-            for (let i = -5; i &amp;lt;= 5; i++) {
-                const y = centerY - i * scale;
-                ctx.beginPath();
-                ctx.moveTo(0, y);
-                ctx.lineTo(canvas.width, y);
-                ctx.stroke();
-            }
-
-            // Оси (черные)
-            ctx.strokeStyle = '#333';
-            ctx.lineWidth = 2;
-
-            // Ось X
-            ctx.beginPath();
-            ctx.moveTo(0, centerY);
-            ctx.lineTo(canvas.width, centerY);
-            ctx.stroke();
-
-            // Ось Y
-            ctx.beginPath();
-            ctx.moveTo(centerX, 0);
-            ctx.lineTo(centerX, canvas.height);
-            ctx.stroke();
-
-            // Подписи осей
-            ctx.fillStyle = '#333';
-            ctx.font = '14px Arial';
-            ctx.fillText('X', canvas.width - 10, centerY - 10);
-            ctx.fillText('Y', centerX + 10, 20);
-        }
-
-        // Основная функция рисования графика
-        function drawGraph() {
-            if (!canvas || !ctx) {
-                console.error('Canvas не инициализирован');
-                return;
-            }
-
-            // Получаем актуальный R
-            currentR = getCurrentRFromForm();
-            console.log('Рисуем график для R =', currentR);
-
-            // Очищаем canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Рисуем сетку и оси
-            drawGridAndAxes();
-
-            // Рисуем область
-            drawArea(currentR);
-
-            // Подпись
-            ctx.fillStyle = '#6A0DAD';
-            ctx.font = 'bold 16px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('График для R = ' + currentR, canvas.width / 2, 30);
-        }
-
-        // Функция клика по графику
-        function handleCanvasClick(event) {
-            const rect = canvas.getBoundingClientRect();
-            const clickX = event.clientX - rect.left;
-            const clickY = event.clientY - rect.top;
-
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            const scale = 40;
-
-            // Преобразуем координаты canvas → математические
-            const mathX = (clickX - centerX) / scale;
-            const mathY = (centerY - clickY) / scale;
-
-            console.log('Клик по графику:', mathX.toFixed(2), mathY.toFixed(2));
-
-            // Округляем X до ближайшего допустимого значения
-            const validX = [-2.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0, 1.5];
-            let closestX = validX[0];
-            let minDiff = Math.abs(mathX - closestX);
-
-            for (let i = 0; i &amp;lt; validX.length; i++) {
-                const val = validX[i];
-                const diff = Math.abs(mathX - val);
-                if (diff &amp;lt; minDiff) {
-                    minDiff = diff;
-                    closestX = val;
-                }
-            }
-
-            // Округляем Y и ограничиваем [-3, 3]
-            const roundedY = Math.round(mathY);
-            const clampedY = Math.max(-3, Math.min(3, roundedY));
-
-            console.log('Округленные значения:', closestX, clampedY);
-
-            // Ищем элементы формы
-            const xSelect = document.querySelector('select[id*=":x"]');
-            const yInput = document.querySelector('input[id*=":y"]');
-
-            if (xSelect &amp;&amp; yInput) {
-                // Устанавливаем значения
-                xSelect.value = closestX;
-                yInput.value = clampedY;
-
-                // Показываем уведомление
-                showNotification('🎯 Точка добавлена: X=' + closestX + ', Y=' + clampedY + ', R=' + currentR);
-
-                // Имитируем изменение для активации валидации
-                const inputEvent = new Event('input', { bubbles: true });
-                const changeEvent = new Event('change', { bubbles: true });
-                yInput.dispatchEvent(inputEvent);
-                xSelect.dispatchEvent(changeEvent);
-
-                // Ждем немного и нажимаем кнопку
-                setTimeout(function() {
-                    const submitBtn = document.querySelector('button.ui-button-primary');
-                    if (submitBtn) {
-                        console.log('Нажимаем кнопку "Проверить"');
-                        submitBtn.click();
-                    }
-                }, 300);
-            } else {
-                console.error('Не найдены элементы формы');
-            }
-        }
-
-        // Функция уведомления
-        function showNotification(message) {
-            // Создаем уведомление
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #6A0DAD;
-                color: white;
-                padding: 15px;
-                border-radius: 8px;
-                z-index: 10000;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-                animation: slideIn 0.3s ease;
-                max-width: 300px;
-            `;
-            notification.textContent = message;
-            document.body.appendChild(notification);
-
-            // Удаляем через 3 секунды
-            setTimeout(function() {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(function() {
-                    notification.remove();
-                }, 300);
-            }, 3000);
-        }
-
-        // Добавляем стили для анимации
-        function addNotificationStyles() {
-            if (!document.querySelector('#graph-styles')) {
-                const style = document.createElement('style');
-                style.id = 'graph-styles';
-                style.textContent = `
-                    @keyframes slideIn {
-                        from { transform: translateX(100%); opacity: 0; }
-                        to { transform: translateX(0); opacity: 1; }
-                    }
-                    @keyframes slideOut {
-                        from { transform: translateX(0); opacity: 1; }
-                        to { transform: translateX(100%); opacity: 0; }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-        }
-
-        // Инициализация
-        function initGraph() {
-            console.log('Инициализация графика...');
-
-            canvas = document.getElementById('graphCanvas');
+            // Находим canvas
+            var canvas = document.getElementById('graphCanvas');
             if (!canvas) {
                 console.error('Canvas не найден!');
                 return;
             }
 
-            ctx = canvas.getContext('2d');
+            console.log('Canvas найден: ' + canvas.width + 'x' + canvas.height);
+
+            var ctx = canvas.getContext('2d');
             if (!ctx) {
                 console.error('Контекст canvas не получен!');
                 return;
             }
 
-            console.log('Canvas найден, размеры:', canvas.width, 'x', canvas.height);
+            // Параметры
+            var centerX = canvas.width / 2;
+            var centerY = canvas.height / 2;
+            var scale = 40; // пикселей на единицу
+            var currentR = 2; // значение по умолчанию
 
-            // Добавляем стили для уведомлений
-            addNotificationStyles();
+            // ===== ФУНКЦИЯ РИСОВАНИЯ ГРАФИКА =====
+            function drawGraph() {
+                console.log('Рисуем график...');
 
-            // Первоначальная отрисовка
-            drawGraph();
+                // 1. Очищаем canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Обработчик клика
-            canvas.addEventListener('click', handleCanvasClick);
+                // 2. Белый фон
+                ctx.fillStyle = 'white';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Слушаем изменения радиуса R
-            document.querySelectorAll('input[name*=":r"]').forEach(function(radio) {
-                radio.addEventListener('change', function() {
+                // 3. Рисуем сетку (светло-серая)
+                ctx.strokeStyle = '#f0f0f0';
+                ctx.lineWidth = 1;
+
+                // Вертикальные линии
+                for (var i = -5; i &lt;= 5; i++) {
+                    var x = centerX + i * scale;
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, canvas.height);
+                    ctx.stroke();
+                }
+
+                // Горизонтальные линии
+                for (var i = -5; i &lt;= 5; i++) {
+                    var y = centerY - i * scale;
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                    ctx.stroke();
+                }
+
+                // 4. Рисуем оси координат (чёрные)
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 2;
+
+                // Ось X
+                ctx.beginPath();
+                ctx.moveTo(0, centerY);
+                ctx.lineTo(canvas.width, centerY);
+                ctx.stroke();
+
+                // Ось Y
+                ctx.beginPath();
+                ctx.moveTo(centerX, 0);
+                ctx.lineTo(centerX, canvas.height);
+                ctx.stroke();
+
+                // 5. Рисуем область попадания (сиреневая)
+                if (currentR > 0) {
+                    ctx.fillStyle = 'rgba(147, 112, 219, 0.3)';
+                    ctx.strokeStyle = '#6A0DAD';
+                    ctx.lineWidth = 2;
+
+                    // 5.1 Левый верхний прямоугольник (-R/2 до 0, 0 до R)
+                    ctx.beginPath();
+                    ctx.rect(centerX - (currentR/2) * scale, centerY - currentR * scale,
+                            (currentR/2) * scale, currentR * scale);
+                    ctx.fill();
+                    ctx.stroke();
+
+                    // 5.2 Правый верхний четверть круга радиусом R
+                    ctx.beginPath();
+                    ctx.moveTo(centerX, centerY);
+                    ctx.arc(centerX, centerY, currentR * scale, -Math.PI / 2, 0, false);
+                    ctx.lineTo(centerX, centerY);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.stroke();
+
+                    // 5.3 Левый нижний треугольник
+                    ctx.beginPath();
+                    ctx.moveTo(centerX, centerY);
+                    ctx.lineTo(centerX - currentR * scale, centerY);
+                    ctx.lineTo(centerX, centerY + (currentR/2) * scale);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.stroke();
+                }
+
+                // 6. Подпись графика
+                ctx.fillStyle = '#6A0DAD';
+                ctx.font = 'bold 18px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('График области (R = ' + currentR + ')', centerX, 30);
+
+                console.log('✅ График нарисован');
+            }
+
+            // ===== ОБРАБОТКА КЛИКА ПО ГРАФИКУ =====
+            canvas.onclick = function(event) {
+                // Получаем координаты клика
+                var rect = canvas.getBoundingClientRect();
+                var clickX = event.clientX - rect.left;
+                var clickY = event.clientY - rect.top;
+
+                // Преобразуем в математические координаты
+                var mathX = ((clickX - centerX) / scale).toFixed(2);
+                var mathY = ((centerY - clickY) / scale).toFixed(2);
+
+                console.log('Клик на графике: X=' + mathX + ', Y=' + mathY);
+
+                // Рисуем точку на графике
+                ctx.fillStyle = '#4CAF50'; // зелёный цвет
+                ctx.beginPath();
+                ctx.arc(clickX, clickY, 6, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Обводим точку
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                document.getElementById("pointForm:graphX").value = mathX
+                document.getElementById("pointForm:graphY").value = mathY
+                document.getElementById("pointForm:sendCanvasData").click()
+            };
+
+            // ===== ОБНОВЛЕНИЕ ГРАФИКА ПРИ ИЗМЕНЕНИИ R =====
+            var radioButtons = document.querySelectorAll('input[name="pointForm:r"]');
+            for (var i = 0; i &lt; radioButtons.length; i++) {
+                radioButtons[i].addEventListener('change', function() {
                     if (this.checked) {
-                        console.log('Радиус изменен на:', this.value);
+                        currentR = parseFloat(this.value);
+                        console.log('Радиус изменён: R = ' + currentR);
                         drawGraph();
                     }
                 });
-            });
-
-            // Обновление графика после AJAX (PrimeFaces)
-            if (window.PrimeFaces) {
-                PrimeFaces.ajax.AjaxUtils.registerCallback('complete', function() {
-                    console.log('AJAX завершен, обновляем график...');
-                    setTimeout(drawGraph, 100);
-                });
             }
 
-            console.log('✅ График инициализирован');
-        }
+            // ===== ПЕРВОНАЧАЛЬНАЯ ОТРИСОВКА =====
+            drawGraph();
+            canvas.style.cursor = 'crosshair';
 
-        // Запуск при загрузке страницы
-        window.addEventListener('load', function() {
-            console.log('Страница загружена, запускаем график...');
-            setTimeout(initGraph, 100);
+            console.log('✅ График полностью инициализирован и готов к работе!');
         });
-
-        console.log('=== СКРИПТ ЗАГРУЖЕН ===');
     </script>
-
-    </h:body>
+</h:body>
 </html>
