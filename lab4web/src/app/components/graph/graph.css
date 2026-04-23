@@ -1,0 +1,12 @@
+.graph-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+
+canvas {
+  border: 1px solid #ccc;
+  cursor: crosshair;
+  background-color: white;
+}

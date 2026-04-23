@@ -1,0 +1,27 @@
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>X</th>
+        <th>Y</th>
+        <th>R</th>
+        <th>Результат</th>
+        <th>Время</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let point of points()">
+        <td>{{ point.x }}</td>
+        <td>{{ point.y }}</td>
+        <td>{{ point.r }}</td>
+        <td [ngClass]="{'hit': point.hit, 'miss': !point.hit}">
+          {{ point.hit ? 'Попадание' : 'Промах' }}
+        </td>
+        <td>{{ point.timestamp | date:'MM.dd.y HH:mm:ss' }}</td>
+      </tr>
+      <tr *ngIf="points().length === 0">
+        <td colspan="5" class="no-data">Нет результатов</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
